@@ -25,7 +25,7 @@ export default function Home() {
 
   const [messages, setMessages] = useState(firstMessages);
   const [inputValue, setInputValue] = useState(""); // New state to track input value
-  const lastMessageRef = useRef(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
   const [loading, setLoading] = useState(false); // New loading state
 
   useEffect(() => {
@@ -34,7 +34,7 @@ export default function Home() {
     }
   }, [messages]);
 
-  async function handleSubmit(event) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const userMessage = inputValue;
     
@@ -79,7 +79,7 @@ export default function Home() {
   
       // Add API response to the messages
       setMessages((prevMessages) => [...prevMessages, replyMessage]);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Axios error:', error);
       console.error('Error response:', error.response);
     } finally {
